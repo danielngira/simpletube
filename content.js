@@ -105,9 +105,11 @@ async function performAction(message) {
     }
 
     if (youtubeLogo !== null) {
-      youtubeLogo.innerHTML =
-        '<img src = "https://raw.githubusercontent.com/KishanKokal/Untrapped/89f2281ee2f6f936d9eb831d065ab436cd785675/untrapped.svg" width = "100px"></img>';
-      youtubeLogo = null;
+      const newLogo = document.createElement('img');
+
+      newLogo.src = chrome.runtime.getURL('assets/simpletube.svg');
+      newLogo.width = 100;
+      youtubeLogo.parentNode.replaceChild(newLogo, youtubeLogo);
     }
 
     // check if the page has a side bar

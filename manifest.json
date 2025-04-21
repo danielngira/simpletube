@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Untrapped",
+  "name": "SimpleTube",
   "version": "2.0.1",
   "permissions": ["storage", "tabs"],
   "host_permissions": ["https://*.youtube.com/*"],
   "web_accessible_resources": [
     {
       "resources": [
-        "assets/untrapped.png",
-        "assets/untrapped.svg",
+        "assets/simpletube.png",
+        "assets/simpletube.svg",
         "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js",
         "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       ],
@@ -26,7 +26,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_icon": "assets/untrapped.png",
+    "default_icon": "assets/simpletube.png",
     "default_popup": "popup.html",
     "default_title": "Click here to change preferences for how you browse through YouTube"
   }
