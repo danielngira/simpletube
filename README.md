@@ -113,3 +113,6 @@ You can contact me via email at [kokalkishan1072@gmail.com](mailto:kokalkishan10
 Additionally, you can find the project's repository on GitHub at [Untrapped](https://github.com/KishanKokal/Untrapped). Feel free to open issues or submit pull requests for any bug reports, feature requests, or code contributions. I appreciate any contributions and collaboration from the open-source community.
 
 Thank you for your interest in this project, and I look forward to hearing from you!
+
+Colors
+Blue-grey (#96C2DB, #E5EDF1), white (#FFFFF) 

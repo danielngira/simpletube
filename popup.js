@@ -3,6 +3,7 @@ const recommendedVideos = document.getElementById("recommendedVideos");
 const commentSection = document.getElementById("commentSection");
 const liveChat = document.getElementById("liveChat");
 const ad = document.getElementById("ad");
+const videoDetails = document.querySelectorAll("div#details");  // Only use the ID
 
 async function doSomething() {
   const item = await chrome.storage.sync.get(["homeFeed"]);
@@ -11,13 +12,16 @@ async function doSomething() {
   const item4 = await chrome.storage.sync.get(["commentSection"]);
   const item5 = await chrome.storage.sync.get(["liveChat"]);
   const item6 = await chrome.storage.sync.get(["ad"]);
-  document.getElementById("homeFeed").checked = item.homeFeed;
+  const item7 = await chrome.storage.sync.get(["videoDetails"]);
+
+  document.getElementById("homeFeed").checked = item.homeFeed || false;
   document.getElementById("recommendedVideos").checked =
-    item2.recommendedVideos;
-  document.getElementById("shorts").checked = item3.shorts;
-  document.getElementById("commentSection").checked = item4.commentSection;
-  document.getElementById("liveChat").checked = item5.liveChat;
-  document.getElementById("ad").checked = item6.ad;
+    item2.recommendedVideos || false;
+  document.getElementById("shorts").checked = item3.shorts || false;
+  document.getElementById("commentSection").checked = item4.commentSection || false;
+  document.getElementById("liveChat").checked = item5.liveChat || false;
+  document.getElementById("ad").checked = item6.ad || false;
+  document.getElementById("videoDetails").checked = item7.videoDetails || false;
 }
 
 homeFeed.addEventListener("change", function (event) {
@@ -270,6 +274,19 @@ shorts.addEventListener("change", function (event) {
       }
     );
   }
+});
+
+videoDetails.addEventListener("change", function (event) {
+  chrome.storage.sync.set({ videoDetails: this.checked });
+
+  let my_tabid;
+  chrome.tabs.query({ currentWindow: true, active: true }, async function (tabs) {
+    my_tabid = await tabs[0].id;
+    let message = {
+      text: this.checked ? "hideVideoDetails" : "showVideoDetails", // Toggle
+    };
+    await chrome.tabs.sendMessage(my_tabid, message);
+  });
 });
 
 doSomething();

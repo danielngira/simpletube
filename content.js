@@ -4,6 +4,7 @@ let item,
   item4,
   item5,
   item6,
+  item7,
   related,
   homeFeed,
   scrollContainer,
@@ -20,6 +21,7 @@ async function doSomething() {
   item4 = await chrome.storage.sync.get(["commentSection"]);
   item5 = await chrome.storage.sync.get(["liveChat"]);
   item6 = await chrome.storage.sync.get(["ad"]);
+  item7 = await chrome.storage.sync.get(["videoDetails"]);
 }
 doSomething();
 
@@ -79,7 +81,17 @@ async function performAction(message) {
     ad.forEach(function (ele) {
       ele.style["display"] = "none";
     });
-  } else if (message === "hello") {
+  } else if (message === "hideVideoDetails") {
+        const videoDetails = document.querySelectorAll("div#details");  // Only use the ID
+        videoDetails.forEach((details) => {
+            details.style.display = "none"; // Hide the video details
+        });
+    } else if (message === "showVideoDetails") {
+    const videoDetails = document.querySelectorAll("div#details");  // Only use the ID
+    videoDetails.forEach((details) => {
+        details.style.display = ""; // Show the video details again
+    });
+    } else if (message === "hello") {
     await doSomething();
     // declaring variables to store each element
     related = document.getElementById("related");
@@ -140,6 +152,12 @@ async function performAction(message) {
       // set the visibility of side bar to hidden
       shorts.style["display"] = "none";
       shorts = null;
+    }
+    if (item7.videoDetails === false) {
+        const videoDetails = document.querySelectorAll("div#details");
+        videoDetails.forEach((details) => {
+        details.style.display = "none"; // Hide the video details initially if state is false
+        });
     }
   }
 }
